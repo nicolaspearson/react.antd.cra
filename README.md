@@ -2,6 +2,8 @@
 
 Starter project for React built using Typescript, MobX, Ant Design, and Webpack. We leverage [Create React App Configuration Override](https://github.com/sharegate/craco) in order to provide custom build functionality.
 
+## Getting Started
+
 To get started clone the repository and run:
 
 ```bash
@@ -9,6 +11,7 @@ yarn install
 ```
 
 Followed by:
+
 ```
 yarn start
 ```
