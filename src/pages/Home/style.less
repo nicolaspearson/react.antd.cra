@@ -1,0 +1,52 @@
+@import '~@themes/app-theme.less';
+
+.Home__Body {
+	position: relative;
+	background-color: @page-background;
+	margin: 16px;
+	padding: 10px;
+	height: calc(100vh - 90px);
+
+	.Home__Container {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		background-color: @page-background;
+
+		.Home__Content {
+			display: flex;
+			flex: 1;
+			flex-direction: column;
+
+			.Logo__Container {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 100%;
+				height: 200px;
+				padding: 20px;
+				margin: 100px 0px 20px;
+
+				.Logo__Main {
+					height: 200px;
+					width: 200px;
+					margin: 0;
+					padding: 10px;
+				}
+				&:global(svg) {
+					width: 35px;
+					height: 35px;
+					object-fit: contain;
+					margin: 20px 10px;
+				}
+
+				&:global(path) {
+					fill: @color-white;
+				}
+			}
+		}
+	}
+}

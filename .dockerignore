@@ -1,0 +1,21 @@
+# Docker
+Dockerfile
+docker-compose.yml
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+
+# IDE
+.vscode
+
+# Dependencies
+node_modules
+
+# Other
+build
+.editorconfig
+.gitignore
+.prettierrc

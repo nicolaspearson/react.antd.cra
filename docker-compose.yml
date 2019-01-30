@@ -1,0 +1,20 @@
+version: '3.7'
+
+networks:
+  react-front-tier:
+    name: react-starter-client-net
+
+services:
+  react-starter:
+    hostname: localhost
+    image: react-starter-client:1.0
+    build:
+      context: .
+    container_name: starter-react-client
+    expose:
+      - 80
+    ports:
+      - 8080:80
+    restart: always
+    networks:
+      - react-front-tier
