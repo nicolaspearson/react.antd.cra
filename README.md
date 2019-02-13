@@ -45,7 +45,25 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Docker
 
-This project includes a multi-stage Dockerfile, to build an image you can execute: `docker build . --tag react-starter-client:1.0`
+This project includes a multi-stage Dockerfile. 
+
+To build the image: 
+
+```
+docker build . --tag react-starter-client:1.0
+```
+
+Alternatively, build and run:
+
+```
+docker-compose up --build
+```
+
+Or, just run the existing image:
+
+```
+docker-compose up
+```
 
 Runs the app in production mode.
 Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
