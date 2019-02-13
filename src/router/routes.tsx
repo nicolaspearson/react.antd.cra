@@ -66,3 +66,23 @@ export const CalendarRoute: AdvRoute = {
 	}
 };
 routes[CalendarRoute.name] = CalendarRoute;
+
+export const SearchRoute: AdvRoute = {
+	name: RouteNames.SEARCH,
+	path: '/search',
+
+	link: () => ({
+		name: SearchRoute.name
+	}),
+
+	component: () => <App />,
+
+	activate: action((store: RouterStore) => {
+		store.activatedRouteName(SearchRoute.name);
+	}),
+
+	deactivate: (store: RouterStore) => {
+		store.deActivatedRouteName(SearchRoute.name);
+	}
+};
+routes[SearchRoute.name] = SearchRoute;

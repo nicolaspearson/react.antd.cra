@@ -9,6 +9,7 @@ import Page from '@components/structural/Page';
 import { RouteNames } from '@enums/RouteNames';
 import Calendar from '@pages/Calendar';
 import Home from '@pages/Home';
+import Search from '@pages/Search';
 import { RouterStore } from '@store/RouterStore';
 
 const { Header, Sider, Content } = Layout;
@@ -91,6 +92,10 @@ class App extends React.Component<AppProps, State> {
 			case RouteNames.CALENDAR:
 				activeKey = '2';
 				break;
+
+			case RouteNames.SEARCH:
+				activeKey = '3';
+				break;
 		}
 		return activeKey;
 	};
@@ -117,6 +122,16 @@ class App extends React.Component<AppProps, State> {
 				</div>
 			</Menu.Item>
 		);
+		menuItems.push(
+			<Menu.Item key="3">
+				<div onClick={this.handleMenuItemClick}>
+					<RouterLink style={{ width: '100%' }} routeName={RouteNames.SEARCH}>
+						<Icon type="search" />
+						<span>Search</span>
+					</RouterLink>
+				</div>
+			</Menu.Item>
+		);
 		return menuItems;
 	}
 
@@ -124,6 +139,9 @@ class App extends React.Component<AppProps, State> {
 		switch (activeRouteName) {
 			case RouteNames.CALENDAR:
 				return <Calendar />;
+
+			case RouteNames.SEARCH:
+				return <Search />;
 		}
 		return <Home />;
 	};
@@ -184,12 +202,12 @@ class App extends React.Component<AppProps, State> {
 										</div>
 									</Popover>
 								) : (
-									<Icon
-										className="Layout__Trigger"
-										type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-										onClick={this.toggleMenu}
-									/>
-								)}
+										<Icon
+											className="Layout__Trigger"
+											type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+											onClick={this.toggleMenu}
+										/>
+									)}
 							</Header>
 							<Content>{this.renderAppPage(activeRouteName)}</Content>
 						</Layout>
