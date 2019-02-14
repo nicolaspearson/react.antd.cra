@@ -11,7 +11,7 @@ COPY --chown=app:app package.json $HOME/node/
 # Install app dependencies
 USER app
 WORKDIR $HOME/node
-RUN npm install
+RUN npm install yarn && rm package-lock.json && yarn install
 
 # Bundle app source
 USER root
