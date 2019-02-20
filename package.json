@@ -19,7 +19,7 @@
 		"tslint": "tslint --fix -c tslint.json -p tsconfig.json"
 	},
 	"dependencies": {
-		"antd": "~3.13.2",
+		"antd": "~3.13.5",
 		"classnames": "~2.2.6",
 		"mobx": "~5.9.0",
 		"mobx-react": "~5.4.3",
@@ -34,8 +34,8 @@
 		"@types/classnames": "~2.2.7",
 		"@types/jest": "~23.3.13",
 		"@types/node": "~11.9.4",
-		"@types/react": "~16.8.3",
-		"@types/react-dom": "~16.8.1",
+		"@types/react": "~16.8.4",
+		"@types/react-dom": "~16.8.2",
 		"antd-iconfont": "~3.0.3",
 		"craco-antd": "~1.10.0",
 		"dotenv": "~6.2.0",
