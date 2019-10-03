@@ -12,9 +12,9 @@ import Home from '@pages/Home';
 import Search from '@pages/Search';
 import { RouterStore } from '@store/RouterStore';
 
-const { Header, Sider, Content } = Layout;
-
 import './style.less';
+
+const { Content, Header, Sider } = Layout;
 
 export interface AppProps {
 	children?: any;
@@ -38,10 +38,6 @@ class App extends React.Component<AppProps, State> {
 		isNavbar: document.body.clientWidth < 770,
 		menuPopoverVisible: false
 	};
-
-	constructor(props: AppProps, context?: any) {
-		super(props, context);
-	}
 
 	public componentDidMount() {
 		window.addEventListener('resize', this.updateDimensions.bind(this));
@@ -202,12 +198,12 @@ class App extends React.Component<AppProps, State> {
 										</div>
 									</Popover>
 								) : (
-										<Icon
-											className="Layout__Trigger"
-											type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-											onClick={this.toggleMenu}
-										/>
-									)}
+									<Icon
+										className="Layout__Trigger"
+										type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+										onClick={this.toggleMenu}
+									/>
+								)}
 							</Header>
 							<Content>{this.renderAppPage(activeRouteName)}</Content>
 						</Layout>

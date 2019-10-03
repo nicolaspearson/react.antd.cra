@@ -1,5 +1,5 @@
 import { Button, Form, Input, message as AntMessage, Row } from 'antd';
-import { FormComponentProps } from 'antd/lib/form/Form';
+import { FormComponentProps, WrappedFormUtils } from 'antd/lib/form/Form';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 
@@ -13,7 +13,7 @@ const FormItem = Form.Item;
 const { TextArea } = Input;
 
 export interface HomeProps {
-	// Empty
+	form: WrappedFormUtils<any>;
 }
 
 type AllProps = HomeProps & FormComponentProps;

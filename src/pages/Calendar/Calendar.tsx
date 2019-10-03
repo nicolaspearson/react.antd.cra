@@ -19,10 +19,6 @@ class Calendar extends React.Component<CalendarProps, State> {
 		loading: true
 	};
 
-	constructor(props: CalendarProps, context?: any) {
-		super(props, context);
-	}
-
 	public componentDidMount() {
 		setTimeout(() => {
 			this.setState({

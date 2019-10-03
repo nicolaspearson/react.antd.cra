@@ -17,10 +17,6 @@ class Search extends React.Component<SearchProps, State> {
 		loading: true
 	};
 
-	constructor(props: SearchProps, context?: any) {
-		super(props, context);
-	}
-
 	public componentDidMount() {
 		setTimeout(() => {
 			this.setState({

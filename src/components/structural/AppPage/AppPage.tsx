@@ -4,6 +4,8 @@ import * as React from 'react';
 
 import Loader from '@components/structural/Loader';
 
+import './style.less';
+
 const antSpinnerIcon = (
 	<Icon
 		type="loading"
@@ -14,8 +16,6 @@ const antSpinnerIcon = (
 		spin={true}
 	/>
 );
-
-import './style.less';
 
 export interface AppPageProps {
 	children?: any;

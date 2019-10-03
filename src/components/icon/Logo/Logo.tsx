@@ -14,6 +14,7 @@ const Logo = (props: LogoProps) => (
 		className="Logo__Main"
 		style={{ width: props.width, height: props.height }}
 		src={logoImage}
+		alt="Logo"
 	/>
 );
 

@@ -25,10 +25,6 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, State> {
 		hasError: false
 	};
 
-	constructor(props: ErrorBoundaryProps, context: any) {
-		super(props, context);
-	}
-
 	public componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
 		this.setState({
 			hasError: true
@@ -53,7 +49,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, State> {
 						className="Error__Card"
 						style={{ marginTop: 40, width: 800 }}
 						bordered={false}
-						cover={<img className="Image__Error__Main" src={errorImage} />}
+						cover={<img className="Image__Error__Main" src={errorImage} alt="Error" />}
 					>
 						<h1 className="Error__Title">Oops</h1>
 						<h1 className="Error__Message">
