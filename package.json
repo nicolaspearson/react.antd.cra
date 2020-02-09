@@ -42,7 +42,7 @@
 		"craco-antd": "~1.14.1",
 		"dotenv": "~8.2.0",
 		"dotenv-expand": "~5.1.0",
-		"jest": "~24.9.0",
+		"jest": "~25.1.0",
 		"less": "~3.10.3",
 		"npm-check-updates": "~4.0.1",
 		"prettier": "~1.19.1",
