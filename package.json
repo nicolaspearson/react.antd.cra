@@ -36,7 +36,7 @@
 		"@types/classnames": "~2.2.9",
 		"@types/jest": "~24.0.23",
 		"@types/node": "~12.12.11",
-		"@types/react": "~16.9.11",
+		"@types/react": "~16.9.19",
 		"@types/react-dom": "~16.9.4",
 		"antd-iconfont": "~3.0.3",
 		"craco-antd": "~1.14.1",
