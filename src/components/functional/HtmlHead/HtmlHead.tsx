@@ -84,10 +84,10 @@ class HtmlHead extends React.Component {
 	}
 
 	public render() {
-		const head: Array<React.DetailedReactHTMLElement<any, any>> = React.Children.map(
+		const head: React.DetailedReactHTMLElement<any, any>[] = React.Children.map(
 			this.props.children,
 			(c) => c
-		)
+		)!
 			.filter((c) => !!c)
 			.map((children) => React.Children.toArray(children))
 			.reduce((a, b) => a.concat(b), [])
