@@ -43,7 +43,7 @@
 		"dotenv": "~8.2.0",
 		"dotenv-expand": "~5.1.0",
 		"jest": "~24.9.0",
-		"less": "~3.10.3",
+		"less": "~3.11.1",
 		"npm-check-updates": "~4.0.1",
 		"prettier": "~1.19.1",
 		"react-scripts": "~3.3.1",
