@@ -44,7 +44,7 @@
 		"dotenv-expand": "~5.1.0",
 		"jest": "~24.9.0",
 		"less": "~3.11.1",
-		"npm-check-updates": "~4.0.2",
+		"npm-check-updates": "~4.0.3",
 		"prettier": "~1.19.1",
 		"react-scripts": "~3.4.0",
 		"ts-jest": "~25.2.1",
