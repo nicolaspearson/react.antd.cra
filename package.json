@@ -27,8 +27,8 @@
 		"mobx-react": "~6.1.8",
 		"react": "~16.13.0",
 		"react-dom": "~16.13.0",
-		"router5": "~7.0.2",
-		"router5-plugin-browser": "~7.0.2"
+		"router5": "~8.0.1",
+		"router5-plugin-browser": "~8.0.1"
 	},
 	"devDependencies": {
 		"@babel/plugin-proposal-decorators": "~7.8.3",
