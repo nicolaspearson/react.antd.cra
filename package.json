@@ -46,7 +46,7 @@
 		"less": "~3.11.1",
 		"npm-check-updates": "~4.0.3",
 		"prettier": "~1.19.1",
-		"react-scripts": "~3.4.0",
+		"react-scripts": "~3.4.1",
 		"ts-jest": "~25.2.1",
 		"tslint": "~6.0.0",
 		"tslint-config-prettier": "~1.18.0",
