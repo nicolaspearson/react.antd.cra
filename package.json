@@ -37,7 +37,7 @@
 		"@types/jest": "~25.1.3",
 		"@types/node": "~13.7.7",
 		"@types/react": "~16.9.23",
-		"@types/react-dom": "~16.9.5",
+		"@types/react-dom": "~16.9.6",
 		"antd-iconfont": "~3.0.3",
 		"craco-antd": "~1.14.1",
 		"dotenv": "~8.2.0",
