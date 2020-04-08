@@ -24,7 +24,7 @@
 		"antd": "~3.26.12",
 		"classnames": "~2.2.6",
 		"mobx": "~5.15.4",
-		"mobx-react": "~6.1.8",
+		"mobx-react": "~6.2.2",
 		"react": "~16.13.0",
 		"react-dom": "~16.13.0",
 		"router5": "~7.0.2",
