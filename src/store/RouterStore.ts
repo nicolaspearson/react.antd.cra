@@ -5,33 +5,38 @@ import { makeMobxRouter } from '@router/router';
 import { DoneFn, LinkData, routes as appRoutes } from '@router/routes';
 import { RootStore } from '@store/RootStore';
 
+// eslint-disable-next-line import/prefer-default-export
 export class RouterStore {
-	public rootStore: RootStore;
-	public routes = appRoutes;
-	public router = makeMobxRouter(this.routes, this);
+  public rootStore: RootStore;
 
-	@observable
-	public route: any;
+  public routes = appRoutes;
 
-	@observable
-	public activeRouteName: string = '/';
+  public router = makeMobxRouter(this.routes, this);
 
-	constructor(rootStore: RootStore) {
-		this.rootStore = rootStore;
-	}
+  @observable
+  public route: any;
 
-	@action
-	public activatedRouteName(routeName: string) {
-		this.activeRouteName = routeName;
-	}
+  @observable
+  public activeRouteName = '/';
 
-	@action
-	public deActivatedRouteName(routeName: string) {
-		// Empty for now
-	}
+  constructor(rootStore: RootStore) {
+    this.rootStore = rootStore;
+  }
 
-	public navigate = (linkData: LinkData, options?: NavigationOptions, done?: DoneFn) => {
-		const { name, params } = linkData;
-		this.router.navigate(name, params ? params : {}, options ? options : {}, done);
-	};
+  @action
+  public activatedRouteName(routeName: string) {
+    this.activeRouteName = routeName;
+  }
+
+  @action
+  // eslint-disable-next-line class-methods-use-this
+  public deActivatedRouteName(routeName: string) {
+    // eslint-disable-next-line no-console
+    console.log(routeName);
+  }
+
+  public navigate = (linkData: LinkData, options?: NavigationOptions, done?: DoneFn) => {
+    const { name, params } = linkData;
+    this.router.navigate(name, params || {}, options || {}, done);
+  };
 }

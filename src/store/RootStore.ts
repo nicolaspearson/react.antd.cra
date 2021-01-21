@@ -1,9 +1,10 @@
 import { RouterStore } from '@store/RouterStore';
 
+// eslint-disable-next-line import/prefer-default-export
 export class RootStore {
-	public routerStore: RouterStore;
+  public routerStore: RouterStore;
 
-	constructor() {
-		this.routerStore = new RouterStore(this);
-	}
+  constructor() {
+    this.routerStore = new RouterStore(this);
+  }
 }

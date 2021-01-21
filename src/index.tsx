@@ -15,29 +15,29 @@ configure({ enforceActions: 'observed' });
 
 @observer
 export class Main extends React.Component {
-	private store = new RootStore();
+  private store = new RootStore();
 
-	constructor(props: any, context?: any) {
-		super(props, context);
-		const { router } = this.store.routerStore;
-		router.start();
-		router.navigate(RouteNames.HOME);
-	}
+  constructor(props: any, context?: any) {
+    super(props, context);
+    const { router } = this.store.routerStore;
+    router.start();
+    router.navigate(RouteNames.HOME);
+  }
 
-	public renderRoute() {
-		const { route, routes } = this.store.routerStore;
-		if (route) {
-			return routes[route.name].component(route.params);
-		}
-	}
+  public renderRoute() {
+    const { route, routes } = this.store.routerStore;
+    if (route) {
+      return routes[route.name].component(route.params);
+    }
+  }
 
-	public render() {
-		return (
-			<Provider store={this.store} routerStore={this.store.routerStore}>
-				<ErrorBoundary>{this.renderRoute()}</ErrorBoundary>
-			</Provider>
-		);
-	}
+  public render() {
+    return (
+      <Provider store={this.store} routerStore={this.store.routerStore}>
+        <ErrorBoundary>{this.renderRoute()}</ErrorBoundary>
+      </Provider>
+    );
+  }
 }
 
 ReactDOM.render(<Main />, document.getElementById('root'));
