@@ -10,7 +10,7 @@
       "dom.iterable",
       "esnext"
     ],
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "sourceMap": true,
     "rootDir": "src",
     "allowJs": false,
@@ -29,7 +29,8 @@
     "noUnusedLocals": true,
     "allowSyntheticDefaultImports": true,
     "removeComments": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "noFallthroughCasesInSwitch": true
   },
   "include": [
     "src"
