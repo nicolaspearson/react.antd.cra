@@ -1,12 +1,5 @@
 import * as React from 'react';
 
-const DEFAULT_TITLE = '';
-
-const META_TYPES = ['name', 'httpEquiv', 'charSet', 'itemProp'];
-
-// tslint:disable jsx-key
-const DEFAULT_HEAD = [<meta charSet="utf-8" className="App__Html__Head" />];
-
 const DOMAttributeNames = {
   acceptCharset: 'accept-charset',
   className: 'class',
@@ -14,98 +7,10 @@ const DOMAttributeNames = {
   httpEquiv: 'http-equiv',
 };
 
+const META_TYPES = ['name', 'httpEquiv', 'charSet', 'itemProp'];
+
 export interface HtmlHeadProps {
   children: any;
-}
-
-class HtmlHead extends React.Component {
-  private updatePromise: any;
-
-  constructor(props: HtmlHeadProps, context?: any) {
-    super(props, context);
-    this.updatePromise = undefined;
-  }
-
-  public updateHead(head: React.ReactChild[]) {
-    const promise = (this.updatePromise = Promise.resolve().then(() => {
-      if (promise !== this.updatePromise) {
-        return;
-      }
-
-      this.updatePromise = undefined;
-      this.doUpdateHead(head);
-    }));
-  }
-
-  public doUpdateHead(head: React.ReactChild[]) {
-    const tags: any = {};
-    head.forEach((h: any) => {
-      const components = tags[h.type] || [];
-      components.push(h);
-      tags[h.type] = components;
-    });
-
-    this.updateTitle(tags.title ? tags.title[0] : undefined);
-
-    const types = ['meta', 'base', 'link', 'style', 'script'];
-    types.forEach((type) => {
-      this.updateElements(type, tags[type] || []);
-    });
-  }
-
-  public updateTitle(component: any) {
-    let title;
-    if (component) {
-      const { children } = component.props;
-      title = typeof children === 'string' ? children : children.join('');
-    } else {
-      title = DEFAULT_TITLE;
-    }
-    if (title !== document.title) {
-      document.title = title;
-    }
-  }
-
-  public updateElements(type: any, components: any) {
-    const headEl = document.getElementsByTagName('head')[0];
-    const oldTags = Array.prototype.slice.call(headEl.querySelectorAll(`${type}.App__Html__Head`));
-    const newTags = components.map(reactElementToDOM).filter((newTag: any) => {
-      for (let i = 0, len = oldTags.length; i < len; i++) {
-        const oldTag = oldTags[i];
-        if (oldTag.isEqualNode(newTag)) {
-          oldTags.splice(i, 1);
-          return false;
-        }
-      }
-      return true;
-    });
-
-    oldTags.forEach((t: any) => t.parentNode.removeChild(t));
-    newTags.forEach((t: any) => headEl.appendChild(t));
-  }
-
-  public render() {
-    const head: React.DetailedReactHTMLElement<any, any>[] = React.Children.map(
-      this.props.children,
-      (c) => c
-    )!
-      .filter((c) => !!c)
-      .map((children) => React.Children.toArray(children))
-      .reduce((a, b) => a.concat(b), [])
-      .reverse()
-      .concat(...DEFAULT_HEAD)
-      .filter(unique())
-      .reverse()
-      .map((c: any) => {
-        const className = `${c.className ? `${c.className} ` : ''}App__Html__Head`;
-
-        return React.cloneElement(c, { className });
-      });
-
-    this.updateHead(head);
-
-    return <div />;
-  }
 }
 
 function unique() {
@@ -145,6 +50,7 @@ function unique() {
           }
         }
         break;
+      // no default
     }
     return true;
   };
@@ -166,11 +72,110 @@ function reactElementToDOM({ type, props }: any) {
 
   const { children, dangerouslySetInnerHTML } = props;
   if (dangerouslySetInnerHTML) {
+    // eslint-disable-next-line no-underscore-dangle
     element.innerHTML = dangerouslySetInnerHTML.__html || '';
   } else if (children) {
     element.textContent = typeof children === 'string' ? children : children.join('');
   }
   return element;
+}
+
+class HtmlHead extends React.Component {
+  private updatePromise?: Promise<unknown>;
+
+  DEFAULT_TITLE = '';
+
+  META_TYPES = ['name', 'httpEquiv', 'charSet', 'itemProp'];
+
+  // eslint-disable-next-line react/jsx-key
+  DEFAULT_HEAD = [<meta charSet="utf-8" className="App__Html__Head" />];
+
+  constructor(props: HtmlHeadProps) {
+    super(props);
+    this.updatePromise = undefined;
+  }
+
+  public updateHead(head: React.ReactChild[]) {
+    // eslint-disable-next-line no-multi-assign
+    const promise = (this.updatePromise = Promise.resolve().then(() => {
+      if (promise !== this.updatePromise) {
+        return;
+      }
+      this.updatePromise = undefined;
+      this.doUpdateHead(head);
+    }));
+  }
+
+  public doUpdateHead(head: React.ReactChild[]) {
+    const tags: Record<string, any> = {};
+    head.forEach((h: any) => {
+      const components: any[] = tags[h.type] || [];
+      components.push(h);
+      tags[h.type] = components;
+    });
+
+    this.updateTitle(tags.title ? tags.title[0] : undefined);
+
+    const types = ['meta', 'base', 'link', 'style', 'script'];
+    types.forEach((type) => {
+      this.updateElements(type, tags[type] || []);
+    });
+  }
+
+  public updateTitle(component: any) {
+    let title;
+    if (component) {
+      const { children } = component.props;
+      title = typeof children === 'string' ? children : children.join('');
+    } else {
+      title = this.DEFAULT_TITLE;
+    }
+    if (title !== document.title) {
+      document.title = title;
+    }
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  public updateElements(type: any, components: any) {
+    const headEl = document.getElementsByTagName('head')[0];
+    const oldTags = Array.prototype.slice.call(headEl.querySelectorAll(`${type}.App__Html__Head`));
+    const newTags = components.map(reactElementToDOM).filter((newTag: any) => {
+      for (let i = 0, len = oldTags.length; i < len; i++) {
+        const oldTag = oldTags[i];
+        if (oldTag.isEqualNode(newTag)) {
+          oldTags.splice(i, 1);
+          return false;
+        }
+      }
+      return true;
+    });
+    oldTags.forEach((t: any) => t.parentNode.removeChild(t));
+    newTags.forEach((t: any) => headEl.appendChild(t));
+  }
+
+  public render() {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const head: React.DetailedReactHTMLElement<any, any>[] = React.Children.map(
+      // eslint-disable-next-line react/prop-types
+      this.props.children,
+      (c) => c
+    )!
+      .filter((c) => !!c)
+      .map((children) => React.Children.toArray(children))
+      .reduce((a, b) => a.concat(b), [])
+      .reverse()
+      .concat(...this.DEFAULT_HEAD)
+      .filter(unique())
+      .reverse()
+      .map((c: any) => {
+        const className = `${c.className ? `${c.className} ` : ''}App__Html__Head`;
+        return React.cloneElement(c, { className });
+      });
+
+    this.updateHead(head);
+
+    return <div />;
+  }
 }
 
 export default HtmlHead;

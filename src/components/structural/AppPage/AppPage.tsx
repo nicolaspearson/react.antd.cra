@@ -31,6 +31,21 @@ const loaderStyle = {
   overflow: 'auto',
 };
 
+function renderSpinnerOrLoader(props: AppPageProps) {
+  if (props.antSpinner) {
+    return (
+      <section
+        className={classnames('Spinner__Container', {
+          Spinner__Hidden: !props.spinning,
+        })}
+      >
+        <Spin style={{ display: 'flex' }} indicator={antSpinnerIcon} />
+      </section>
+    );
+  }
+  return <Loader spinning={props.spinning} />;
+}
+
 const AppPage = (props: AppPageProps) => (
   <section
     className={classnames(props.className, {
@@ -38,19 +53,7 @@ const AppPage = (props: AppPageProps) => (
     })}
     style={props.useLoader ? loaderStyle : undefined}
   >
-    {props.useLoader ? (
-      props.antSpinner ? (
-        <section
-          className={classnames('Spinner__Container', {
-            Spinner__Hidden: !props.spinning,
-          })}
-        >
-          <Spin style={{ display: 'flex' }} indicator={antSpinnerIcon} />
-        </section>
-      ) : (
-        <Loader spinning={props.spinning} />
-      )
-    ) : undefined}
+    {props.useLoader ? renderSpinnerOrLoader(props) : undefined}
     {props.children}
   </section>
 );

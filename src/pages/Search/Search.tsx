@@ -4,15 +4,11 @@ import AppPage from '@components/structural/AppPage';
 
 import './style.less';
 
-export interface SearchProps {
-  // Empty
-}
-
 interface State {
   loading: boolean;
 }
 
-class Search extends React.Component<SearchProps, State> {
+class Search extends React.Component<Record<string, unknown>, State> {
   public state: State = {
     loading: true,
   };

@@ -6,15 +6,11 @@ import AppPage from '@components/structural/AppPage';
 
 import './style.less';
 
-export interface CalendarProps {
-  // Empty
-}
-
 interface State {
   loading: boolean;
 }
 
-class Calendar extends React.Component<CalendarProps, State> {
+class Calendar extends React.Component<Record<string, unknown>, State> {
   public state: State = {
     loading: true,
   };

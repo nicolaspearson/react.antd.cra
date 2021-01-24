@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { Icon as LegacyIcon } from '@ant-design/compatible';
 import { BarsOutlined, CalendarOutlined, HomeOutlined, SearchOutlined } from '@ant-design/icons';
 import { Layout, Menu, Popover } from 'antd';
@@ -20,7 +22,7 @@ const { Content, Header, Sider } = Layout;
 
 export interface AppProps {
   children?: any;
-  match?: any;
+  match?: Record<string, unknown>;
   routerStore?: RouterStore;
 }
 
@@ -54,15 +56,9 @@ class App extends React.Component<AppProps, State> {
     window.removeEventListener('resize', this.updateDimensions.bind(this));
   }
 
-  private updateDimensions() {
-    this.setState(() => ({
-      isNavbar: document.body.clientWidth < 770,
-    }));
-  }
-
   private handleMenuPopOverClick = () => {
-    this.setState(() => ({
-      menuPopoverVisible: !this.state.menuPopoverVisible,
+    this.setState((prevState: Readonly<State>) => ({
+      menuPopoverVisible: !prevState.menuPopoverVisible,
     }));
   };
 
@@ -75,9 +71,9 @@ class App extends React.Component<AppProps, State> {
   };
 
   private toggleMenu = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
+    this.setState((prevState: Readonly<State>) => ({
+      collapsed: !prevState.collapsed,
+    }));
   };
 
   private getActiveMenuKey = (activeRouteName: string): string => {
@@ -94,9 +90,16 @@ class App extends React.Component<AppProps, State> {
       case RouteNames.SEARCH:
         activeKey = '3';
         break;
+      // no default
     }
     return activeKey;
   };
+
+  private updateDimensions() {
+    this.setState(() => ({
+      isNavbar: document.body.clientWidth < 770,
+    }));
+  }
 
   private renderMenuItems(): JSX.Element[] {
     const menuItems: JSX.Element[] = [];
@@ -140,6 +143,7 @@ class App extends React.Component<AppProps, State> {
 
       case RouteNames.SEARCH:
         return <Search />;
+      // no default
     }
     return <Home />;
   };

@@ -14,11 +14,11 @@ import '@theme/styles/default/index.less';
 configure({ enforceActions: 'observed' });
 
 @observer
-export class Main extends React.Component {
+export default class Main extends React.Component {
   private store = new RootStore();
 
-  constructor(props: any, context?: any) {
-    super(props, context);
+  constructor(props: Record<string, unknown>) {
+    super(props);
     const { router } = this.store.routerStore;
     router.start();
     router.navigate(RouteNames.HOME);
@@ -29,6 +29,7 @@ export class Main extends React.Component {
     if (route) {
       return routes[route.name].component(route.params);
     }
+    return <div />;
   }
 
   public render() {
